@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Entity
 public class Expense implements Serializable {
@@ -15,15 +15,16 @@ public class Expense implements Serializable {
     private String itemName;
     private String amount;
 
-    @JsonFormat(pattern="yyyy-MM-dd")
-    private Date expenseDate;
+    @Column(name = "expense_date")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", shape = JsonFormat.Shape.STRING)
+    private LocalDateTime expenseDate;
 
     public Expense() {}
 
 
 
 
-    public Expense(Long id, String itemName, String amount, Date expenseDate) {
+    public Expense(Long id, String itemName, String amount, LocalDateTime expenseDate) {
         this.id = id;
         this.itemName = itemName;
         this.amount = amount;
@@ -52,12 +53,12 @@ public class Expense implements Serializable {
 
         this.amount = amount;
     }
-    public Date getExpenseDate(){
+    public LocalDateTime getExpenseDate(){
         return expenseDate;
     }
-    public void setExpenseDate(){
-        this.expenseDate = expenseDate;
-    }
+    public void setExpenseDate(String dataStr){
+
+        this.expenseDate = dataStr == null ? null : LocalDateTime.parse(dataStr);    }
 
     @Override
     public String toString() {
