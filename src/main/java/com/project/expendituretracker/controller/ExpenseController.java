@@ -2,14 +2,23 @@ package com.project.expendituretracker.controller;
 
 import com.project.expendituretracker.domain.Expense;
 import com.project.expendituretracker.service.ExpenseService;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
 
 import javax.transaction.Transactional;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Transactional
 @RestController
@@ -48,5 +57,13 @@ public class ExpenseController {
         expenseService.deleteExpense(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
+    @PostMapping("/file")
+    public void uploadFile(@RequestParam("file")MultipartFile file) throws IllegalStateException, IOException {
+
+        expenseService.uploadFile(file);
+    }
+
+
 
 }

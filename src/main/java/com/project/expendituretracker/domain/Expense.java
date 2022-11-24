@@ -19,17 +19,20 @@ public class Expense implements Serializable {
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", shape = JsonFormat.Shape.STRING)
     private LocalDateTime expenseDate;
 
+    private String fileName;
+
     public Expense() {}
 
 
 
 
-    public Expense(Long id, String itemName, String amount, LocalDateTime expenseDate) {
+    public Expense(Long id, String itemName, String amount, LocalDateTime expenseDate, String fileName) {
         this.id = id;
         this.itemName = itemName;
         this.amount = amount;
 
         this.expenseDate = expenseDate;
+        this.fileName = fileName;
     }
     public Long getid(){
         return id;
@@ -58,7 +61,20 @@ public class Expense implements Serializable {
     }
     public void setExpenseDate(String dataStr){
 
-        this.expenseDate = dataStr == null ? null : LocalDateTime.parse(dataStr);    }
+        this.expenseDate = dataStr == null ? null : LocalDateTime.parse(dataStr);
+    }
+
+    public String getFileName() {
+        return fileName;
+    }
+
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
+    }
+
+
+
+
 
     @Override
     public String toString() {
@@ -69,5 +85,7 @@ public class Expense implements Serializable {
                 ", expenseDate=" + expenseDate + '\'' +
                 '}';
     }
+
+
 }
 
