@@ -83,6 +83,7 @@ public class Expense implements Serializable {
                 ", itemName=" + itemName + '\'' +
                 ", amount=" + amount + + '\'' +
                 ", expenseDate=" + expenseDate + '\'' +
+                ", fileName=" + fileName + '\'' +
                 '}';
     }
 
