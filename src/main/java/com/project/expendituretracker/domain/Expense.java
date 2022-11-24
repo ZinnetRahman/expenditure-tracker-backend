@@ -16,7 +16,7 @@ public class Expense implements Serializable {
     private String amount;
 
     @Column(name = "expense_date")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", shape = JsonFormat.Shape.STRING)
+    @JsonFormat(pattern = "dd-MM-yyyy hh:mm:ss a", shape = JsonFormat.Shape.STRING)
     private LocalDateTime expenseDate;
 
     private String fileName;
