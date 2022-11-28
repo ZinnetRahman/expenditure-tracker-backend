@@ -1,30 +1,30 @@
 package com.project.expendituretracker.controller;
 
 import com.project.expendituretracker.domain.Expense;
+import com.project.expendituretracker.repository.ExpenseRepo;
 import com.project.expendituretracker.service.ExpenseService;
-import org.springframework.core.io.Resource;
-import org.springframework.http.HttpHeaders;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
 
 import javax.transaction.Transactional;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.time.LocalDateTime;
+
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Transactional
 @RestController
 @RequestMapping("/expense")
 public class ExpenseController {
     private final ExpenseService expenseService;
+
+    @Autowired
+    ExpenseRepo expenseRepo;
 
     public ExpenseController(ExpenseService expenseService) {
         this.expenseService = expenseService;
@@ -35,11 +35,10 @@ public class ExpenseController {
         List<Expense> expenses = expenseService.findAllExpense();
         return new ResponseEntity<>(expenses, HttpStatus.OK);
     }
-    @GetMapping("/find/{id}")
-    public ResponseEntity<Expense> getExpenseById (@PathVariable("id") Long id) {
-        Expense expense = expenseService.findExpenseById(id);
-        return new ResponseEntity<>(expense, HttpStatus.OK);
-    }
+
+
+
+
     @PostMapping("/add")
     public ResponseEntity<Expense> addExpense(@RequestBody Expense expense) {
         Expense newExpense = expenseService.addExpense(expense);
@@ -63,6 +62,13 @@ public class ExpenseController {
 
         expenseService.uploadFile(file);
     }
+
+    @GetMapping("/find/name")
+    public ResponseEntity<List<Expense>> getExpensesbyItemName(@RequestParam String itemName) {
+        return new ResponseEntity<List<Expense>>(expenseRepo.findByItemName(itemName), HttpStatus.OK);
+    }
+
+
 
 
 

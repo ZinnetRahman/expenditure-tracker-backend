@@ -56,9 +56,13 @@ public class ExpenseService {
 
     }
 
-    public Expense findExpenseById(Long id){
-      return   expenseRepo.findExpenseById(id);
-    }
+
+
+
+
+
+
+
     public  void  deleteExpense(Long id){
          expenseRepo.deleteExpenseById(id);
     }
