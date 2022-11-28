@@ -14,7 +14,7 @@ public interface ExpenseRepo extends JpaRepository<Expense, Long>, JpaSpecificat
 
     void deleteExpenseById(Long id);
 
-    List<Expense> findByItemName(String itemName);
+    List<Expense> findByItemNameContainingIgnoreCase(String itemName);
 
 
 }

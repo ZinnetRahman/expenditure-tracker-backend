@@ -63,9 +63,9 @@ public class ExpenseController {
         expenseService.uploadFile(file);
     }
 
-    @GetMapping("/find/name")
-    public ResponseEntity<List<Expense>> getExpensesbyItemName(@RequestParam String itemName) {
-        return new ResponseEntity<List<Expense>>(expenseRepo.findByItemName(itemName), HttpStatus.OK);
+    @GetMapping("/find/{itemName}")
+    public ResponseEntity<List<Expense>> getExpensesByItemName(@PathVariable("itemName") String itemName) {
+        return new ResponseEntity<List<Expense>>(expenseRepo.findByItemNameContainingIgnoreCase(itemName), HttpStatus.OK);
     }
 
 
