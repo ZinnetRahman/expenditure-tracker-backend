@@ -48,7 +48,7 @@ public class ExpenseService {
     public Expense addExpense(Expense expense) {
         return expenseRepo.save(expense);
     }
-   public List<Expense> findAllExpense(){
+    public List<Expense> findAllExpense(){
         return expenseRepo.findAll();
     }
     public Expense updateExpense(Expense expense){
