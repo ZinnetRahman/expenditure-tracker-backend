@@ -80,22 +80,18 @@ public class ExpenseService {
 //        Files.move((Path) file.getInputStream(), this.root.resolve(file.getOriginalFilename()), StandardCopyOption.REPLACE_EXISTING);
 
 
-        String filename = StringUtils.cleanPath(file.getOriginalFilename());
+        String fileName = StringUtils.cleanPath(file.getOriginalFilename());
         try {
             if (file.isEmpty()) {
-                throw new RuntimeException("Failed to store empty file " + filename);
+                throw new RuntimeException("Failed to store empty file " + fileName);
             }
 
-            // This is a security check
-            if (filename.contains("..")) {
-                throw new RuntimeException("Cannot store file with relative path outside current directory " + filename);
-            }
 
             try (InputStream inputStream = file.getInputStream()) {
-                Files.copy(inputStream, this.root.resolve(filename), StandardCopyOption.REPLACE_EXISTING);
+                Files.copy(inputStream, this.root.resolve(fileName), StandardCopyOption.REPLACE_EXISTING);
             }
         } catch (IOException e) {
-            throw new RuntimeException("Failed to store file " + filename, e);
+            throw new RuntimeException("Failed to store file " + fileName, e);
         }
 
 

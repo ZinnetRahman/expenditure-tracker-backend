@@ -18,15 +18,19 @@ public interface ExpenseRepo extends JpaRepository<Expense, Long>, JpaSpecificat
 
     String EXPENSE_LIST = """
             
-            SELECT id, amount, expense_date, file_name, item_name
-            	FROM expense order by id DESC;
+            SELECT
+            *
+            FROM expense
+            ORDER BY id DESC;
             """ ;
 
     @Query(value = EXPENSE_LIST, nativeQuery = true)
     List<Expense> findAll();
 
 
+
     List<Expense> findByItemNameContainingIgnoreCase(String itemName);
+
 
 
 }
