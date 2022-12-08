@@ -65,11 +65,11 @@ public class Expense implements Serializable {
     }
 
     public String getFileName() {
-        return fileName;
+        return "http://localhost:8080/resources/"+fileName;
     }
 
     public void setFileName(String fileName) {
-        this.fileName = fileName;
+        this.fileName = fileName.substring(12);
     }
 
 
