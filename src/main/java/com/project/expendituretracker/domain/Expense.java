@@ -23,9 +23,6 @@ public class Expense implements Serializable {
 
     public Expense() {}
 
-
-
-
     public Expense(Long id, String itemName, String amount, LocalDateTime expenseDate, String fileName) {
         this.id = id;
         this.itemName = itemName;
@@ -63,7 +60,6 @@ public class Expense implements Serializable {
 
         this.expenseDate = dataStr == null ? null : LocalDateTime.parse(dataStr);
     }
-
     public String getFileName() {
         return "http://localhost:8080/resources/"+fileName;
     }
@@ -71,10 +67,6 @@ public class Expense implements Serializable {
     public void setFileName(String fileName) {
         this.fileName = fileName.substring(12);
     }
-
-
-
-
 
     @Override
     public String toString() {

@@ -10,6 +10,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class StaticResourceConfiguration implements WebMvcConfigurer {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/resources/**").addResourceLocations("file:/home/zinnetrahman/Documents/SpringBootProject/ExpenditureTrackerApplication/expendituretracker/uploads/");
+         registry.addResourceHandler("/resources/**")
+        .addResourceLocations("file:/home/zinnetrahman/Documents/SpringBootProject/ExpenditureTrackerApplication/expendituretracker/uploads/");
     }
 }

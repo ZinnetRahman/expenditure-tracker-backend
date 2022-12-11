@@ -15,7 +15,6 @@ public interface ExpenseRepo extends JpaRepository<Expense, Long>, JpaSpecificat
 
     void deleteExpenseById(Long id);
 
-
     String EXPENSE_LIST = """
             
             SELECT
@@ -23,11 +22,8 @@ public interface ExpenseRepo extends JpaRepository<Expense, Long>, JpaSpecificat
             FROM expense
             ORDER BY id DESC;
             """ ;
-
     @Query(value = EXPENSE_LIST, nativeQuery = true)
     List<Expense> findAll();
-
-
 
     List<Expense> findByItemNameContainingIgnoreCase(String itemName);
 

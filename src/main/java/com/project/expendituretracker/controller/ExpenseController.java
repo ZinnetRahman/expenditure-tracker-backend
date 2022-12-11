@@ -29,40 +29,31 @@ public class ExpenseController {
     public ExpenseController(ExpenseService expenseService) {
         this.expenseService = expenseService;
     }
-
     @GetMapping("/all")
     public ResponseEntity<List<Expense>> getAllExpenses () {
         List<Expense> expenses = expenseService.findAllExpense();
         return new ResponseEntity<>(expenses, HttpStatus.OK);
     }
-
-
-
-
     @PostMapping("/add")
     public ResponseEntity<Expense> addExpense(@RequestBody Expense expense) {
         Expense newExpense = expenseService.addExpense(expense);
         return new ResponseEntity<>(newExpense, HttpStatus.CREATED);
     }
-
     @PutMapping("/update")
     public ResponseEntity<Expense> updateExpense(@RequestBody Expense expense) {
         Expense updateExpense = expenseService.updateExpense(expense);
         return new ResponseEntity<>(updateExpense, HttpStatus.OK);
     }
-
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> deleteExpense(@PathVariable("id") Long id) {
         expenseService.deleteExpense(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
-
     @PostMapping("/file")
     public void uploadFile(@RequestParam("file")MultipartFile file) throws IllegalStateException, IOException {
 
         expenseService.uploadFile(file);
     }
-
     @GetMapping("/find/{itemName}")
     public ResponseEntity<List<Expense>> getExpensesByItemName(@PathVariable("itemName") String itemName) {
         return new ResponseEntity<List<Expense>>(expenseRepo.findByItemNameContainingIgnoreCase(itemName), HttpStatus.OK);

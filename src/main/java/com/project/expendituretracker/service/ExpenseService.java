@@ -18,7 +18,6 @@ public class ExpenseService {
 
    private  final ExpenseRepo expenseRepo;
 
-
     @Autowired
     public ExpenseService(ExpenseRepo expenseRepo) {
         this.expenseRepo = expenseRepo;
@@ -28,26 +27,20 @@ public class ExpenseService {
         return expenseRepo.save(expense);
     }
     public List<Expense> findAllExpense(){
+
         return expenseRepo.findAll();
     }
     public Expense updateExpense(Expense expense){
         return expenseRepo.save(expense);
-
     }
-
-
     public  void  deleteExpense(Long id){
          expenseRepo.deleteExpenseById(id);
     }
-
-
     public void uploadFile(MultipartFile file) throws IllegalStateException, IOException {
 
         Path path = Paths.get("/home/zinnetrahman/Documents/SpringBootProject/ExpenditureTrackerApplication/expendituretracker/uploads/" + file.getOriginalFilename());
         byte[] bytes = file.getBytes();
         Files.write(path, bytes);
-
-
 
     }
 
