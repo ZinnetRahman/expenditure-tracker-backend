@@ -17,7 +17,6 @@ import java.io.IOException;
 
 import java.util.List;
 
-@Transactional
 @RestController
 @RequestMapping("/expense")
 public class ExpenseController {
@@ -44,6 +43,7 @@ public class ExpenseController {
         Expense updateExpense = expenseService.updateExpense(expense);
         return new ResponseEntity<>(updateExpense, HttpStatus.OK);
     }
+    @Transactional
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> deleteExpense(@PathVariable("id") Long id) {
         expenseService.deleteExpense(id);
