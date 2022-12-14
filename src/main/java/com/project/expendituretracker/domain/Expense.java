@@ -59,7 +59,7 @@ public class Expense implements Serializable {
         this.expenseDate = expenseDate;
     }
     public String getFileName() {
-        return "http://localhost:8080/resources/"+fileName;
+        return "http://localhost:8080/images/"+fileName;
     }
 
     public void setFileName(String fileName) {
