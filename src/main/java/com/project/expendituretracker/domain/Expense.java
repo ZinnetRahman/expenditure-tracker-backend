@@ -66,16 +66,6 @@ public class Expense implements Serializable {
         this.fileName = fileName.substring(12);
     }
 
-    @Override
-    public String toString() {
-        return "Expense{" +
-                "id=" + id +
-                ", itemName=" + itemName + '\'' +
-                ", amount=" + amount + + '\'' +
-                ", expenseDate=" + expenseDate + '\'' +
-                ", fileName=" + fileName + '\'' +
-                '}';
-    }
 
 
 }
