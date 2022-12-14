@@ -1,6 +1,7 @@
 package com.project.expendituretracker.controller;
 
 import com.project.expendituretracker.domain.Expense;
+import com.project.expendituretracker.dto.ExpenseResponseDTO;
 import com.project.expendituretracker.repository.ExpenseRepo;
 import com.project.expendituretracker.service.ExpenseService;
 
@@ -29,8 +30,8 @@ public class ExpenseController {
         this.expenseService = expenseService;
     }
     @GetMapping("/all")
-    public ResponseEntity<List<Expense>> getAllExpenses () {
-        List<Expense> expenses = expenseService.findAllExpense();
+    public ResponseEntity<List<ExpenseResponseDTO>> getAllExpenses () {
+        List<ExpenseResponseDTO> expenses = expenseService.findAllExpense();
         return new ResponseEntity<>(expenses, HttpStatus.OK);
     }
     @PostMapping("/add")

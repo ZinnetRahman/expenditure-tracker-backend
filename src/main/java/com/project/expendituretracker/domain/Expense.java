@@ -15,8 +15,6 @@ public class Expense implements Serializable {
     private String itemName;
     private String amount;
 
-    @Column(name = "expense_date")
-    @JsonFormat(pattern = "dd-MM-yyyy hh:mm:ss a", shape = JsonFormat.Shape.STRING)
     private LocalDateTime expenseDate;
 
     private String fileName;
@@ -56,9 +54,9 @@ public class Expense implements Serializable {
     public LocalDateTime getExpenseDate(){
         return expenseDate;
     }
-    public void setExpenseDate(String dataStr){
+    public void setExpenseDate(LocalDateTime expenseDate){
 
-        this.expenseDate = dataStr == null ? null : LocalDateTime.parse(dataStr);
+        this.expenseDate = expenseDate;
     }
     public String getFileName() {
         return "http://localhost:8080/resources/"+fileName;
