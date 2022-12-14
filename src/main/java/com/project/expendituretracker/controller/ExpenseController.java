@@ -19,6 +19,7 @@ import java.io.IOException;
 import java.util.List;
 
 @RestController
+@CrossOrigin("*")
 @RequestMapping("/expense")
 public class ExpenseController {
     private final ExpenseService expenseService;
